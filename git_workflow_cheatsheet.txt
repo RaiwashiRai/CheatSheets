@@ -1,0 +1,70 @@
+Git Workflow Cheat Sheet (Local + Remote)
+=========================================
+
+1. Clone (first time only)
+--------------------------
+git clone <remote-url>
+cd <repo>
+
+2. Keep main updated
+--------------------
+git checkout main
+git fetch origin
+git pull origin main          # merge remote changes into local main
+# OR (alternate, cleaner history)
+git pull --rebase origin main # rebase local commits on top of remote
+
+3. Create a feature branch
+--------------------------
+git checkout -b feature-xyz
+
+4. Work locally
+---------------
+git add .
+git commit -m "Implement feature xyz"
+
+5. Sync with latest main before pushing
+---------------------------------------
+git fetch origin
+git rebase origin/main        # cleaner history (preferred)
+# OR (alternate, keeps merge commits)
+git merge origin/main
+
+6. Push branch to remote
+------------------------
+git push -u origin feature-xyz
+
+If rebased later:
+git push -u origin feature-xyz --force   # needed after rebase
+
+7. Finish work (merge to main)
+------------------------------
+Option A: GitHub/GitLab PR (preferred)
+- Create PR from feature-xyz → main
+- Merge via UI (fast-forward if clean)
+
+Option B: Merge locally
+git checkout main
+git pull origin main
+git merge feature-xyz            # fast-forward if possible
+# OR (alternate, cleaner)
+git rebase feature-xyz           # less common here, usually PR is used
+git push origin main
+
+8. Cleanup branches
+-------------------
+git branch -d feature-xyz
+git push origin --delete feature-xyz
+
+9. Useful cleanup
+-----------------
+git clean -n    # show untracked files
+git clean -f    # delete untracked files
+git clean -fd   # delete untracked files + directories
+
+Summary
+-------
+- Always keep main up-to-date before branching.
+- Use rebase (preferred) for clean, linear history.
+- Push branches, open PRs, merge, then delete branches.
+- Use merge only if you don’t want history rewritten.
