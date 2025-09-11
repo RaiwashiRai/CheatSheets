@@ -56,6 +56,8 @@ git push origin main
 git branch -d feature-xyz
 git push origin --delete feature-xyz
 
+git fetch --prune # To fetch deletes on remote, local branch remains
+
 9. Useful cleanup
 -----------------
 git clean -n    # show untracked files
