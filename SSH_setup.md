@@ -1,6 +1,4 @@
-# vm-ssh-setup.md
-
-# VM + SSH Setup Cheat Sheet
+# VM + SSH Setup
 
 This guide helps you start a Debian VM headless, set up NAT & port forwarding for SSH, and enable a colored shell prompt.
 
